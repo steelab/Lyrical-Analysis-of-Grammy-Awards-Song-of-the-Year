@@ -1804,41 +1804,20 @@ summary {
 <p>Scrape and create table of records from 1980s</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIHdlYnBhZ2UgZm9yIEdyYW1teSBBd2FyZHNcbndlYnBhZ2UgPC0gcmVhZF9odG1sKFwiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvR3JhbW15X0F3YXJkX2Zvcl9SZWNvcmRfb2ZfdGhlX1llYXJcIilcblxuIyBjb3B5IHhwYXRoIGZvciB0YWJsZSBvZiAxOTgwc1xuWFBBVEg4MCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbNV0nXG5cbiMgcnVuIHRoZSBmb2xsb3dpbmcgdG8gY3JlYXRlIHRhYmxlIG9mIHNvbmdzIGZyb20gMTk4MHNcbnRhYmxlXzE5ODAgPC0gXG4gIHdlYnBhZ2UgJT4lXG4gIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDgwKSAlPiVcbiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSlcblxuZDE5ODAgPC0gdGFibGVfMTk4MFtbMV1dXG5cbmhlYWQoZDE5ODApXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIHdlYnBhZ2UgZm9yIEdyYW1teSBBd2FyZHNcbndlYnBhZ2UgPC0gcmVhZF9odG1sKFwiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvR3JhbW15X0F3YXJkX2Zvcl9SZWNvcmRfb2ZfdGhlX1llYXJcIilcblxuIyBjb3B5IHhwYXRoIGZvciB0YWJsZSBvZiAxOTgwc1xuWFBBVEg4MCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbNV0nXG5YUEFUSDkwIDwtICcvaHRtbC9ib2R5L2RpdlszXS9kaXZbM10vZGl2WzVdL2RpdlsxXS90YWJsZVs2XSdcblhQQVRIMDAgPC0gJy9odG1sL2JvZHkvZGl2WzNdL2RpdlszXS9kaXZbNV0vZGl2WzFdL3RhYmxlWzddJ1xuWFBBVEgxMCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbOF0nXG4jIHJ1biB0aGUgZm9sbG93aW5nIHRvIGNyZWF0ZSB0YWJsZSBvZiBzb25ncyBmcm9tIDE5ODBzXG50YWJsZV8xOTgwIDwtIFxuICB3ZWJwYWdlICU+JVxuICBodG1sX25vZGVzKHhwYXRoID0gWFBBVEg4MCkgJT4lXG4gIGh0bWxfdGFibGUoZmlsbCA9IFRSVUUpXG4jIHJ1biB0aGUgZm9sbG93aW5nIHRvIGNyZWF0ZSB0YWJsZSBvZiBzb25ncyBmcm9tIDE5ODBzXG50YWJsZV8xOTkwIDwtIFxuICB3ZWJwYWdlICU+JVxuICBodG1sX25vZGVzKHhwYXRoID0gWFBBVEg5MCkgJT4lXG4gIGh0bWxfdGFibGUoZmlsbCA9IFRSVUUpXG50YWJsZV8yMDAwIDwtIFxuICB3ZWJwYWdlICU+JVxuICBodG1sX25vZGVzKHhwYXRoID0gWFBBVEgwMCkgJT4lXG4gIGh0bWxfdGFibGUoZmlsbCA9IFRSVUUpXG50YWJsZV8yMDEwIDwtIFxuICB3ZWJwYWdlICU+JVxuICBodG1sX25vZGVzKHhwYXRoID0gWFBBVEgxMCkgJT4lXG4gIGh0bWxfdGFibGUoZmlsbCA9IFRSVUUpXG5cbmQxOTgwIDwtIHRhYmxlXzE5ODBbWzFdXVxuZDE5OTAgPC0gdGFibGVfMTk5MFtbMV1dXG5kMjAwMCA8LSB0YWJsZV8yMDAwW1sxXV1cbmQyMDEwIDwtIHRhYmxlXzIwMTBbWzFdXVxuXG5cbmBgYCJ9 -->
 <pre class="r"><code># read webpage for Grammy Awards
 webpage &lt;- read_html(&quot;https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year&quot;)
 
 # copy xpath for table of 1980s
 XPATH80 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[5]&#39;
-
+XPATH90 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[6]&#39;
+XPATH00 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[7]&#39;
+XPATH10 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[8]&#39;
 # run the following to create table of songs from 1980s
 table_1980 &lt;- 
   webpage %&gt;%
   html_nodes(xpath = XPATH80) %&gt;%
   html_table(fill = TRUE)
-
-d1980 &lt;- table_1980[[1]]
-
-head(d1980)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUJxMVRVVThUUVJCZVNsdHNZNFdJZ1ppWU9Ma0h4UVFhaTVqb0k3VzJFc0UwcFFrUTRzUDJibWczN08wMmMzdkZ2dm5Md2JualZyRG9tNXRzZHVmN1p1YWIyY3dPT3FmdjZxZDFJY1N5S0l1U1dLN3dWVlEvOVZ1NzczZUZLSmZZV21LbWxwMC8yR3VkTDJYZWE1bGJRVHhxZmZ6dzlueHY3L3QvdDcyT0VMVWJYZ1cvRVp4TXBBTUpYV3MxdEZFcm5HRVNGT3p6WVAvQ0lZR2JJQnphR2NJWG1VRFBHdlFPYThFQm5DaXQ0VGlsbVpyOXhodkJrRU42TWg1cEpBKytDTTVzQ2gxclhqdG9rekpqT0VMb2FudUZ4SXAvcjI4OXk5T3hkcVNRWXl3WFFrbEJQZjBzeVUyMldkOUU4QXE2aXRDcjk3UWxKVmwvYml3VjRPT3ZhTXdjQm5aOGwrSmxXOUtJSkJ3N1FwWElQTTgzVkJvNlNzYldSUDhvYW5PSUVRd3hubXFNcGRtR0tka29EZEVyYlI3SmxGU0ljREpSRGgvUVcxM0NLT0orK2tpRWhpVTd5bGpvNHFVa2xkeTUreUkzRGlYUkhOcXA0N2Q4a08xWjI0NjQwVFJTOWg3MzU3UlZqSXd4S1pvcEYrREtHVW82UC9DRFVoMWdhQ2txck5vK09aVzRyZVJOQWF6Mjg5Uk9XUU1PWmJ5Z1VDTjcxZlFxRGQ2bG55SmYxY1ZTUWkwVFg0b0g2NUYwc25sQkhNL1c5VUxJaXAxbXNoeFV5bjVNWlNGNGlSYUExZFJrbFVRNzRTUTFsenV0VENDbmIzZWpPS3YzN3VWYnlkSk5rYXJpSHdYTldCay9WaFV0UjZnTDR3bDNuRGZjblBJb085OEpvMG5UV1NlOVh6MjAyaU41YitMNkY5M0E2azhwQkFBQSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Year[I]"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Record"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Artist(s)"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Production team"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1980[44]","2":"NA","3":"NA","4":"NA","_rn_":"1"},{"1":"1980[44]","2":"\"What a Fool Believes\"","3":"The Doobie Brothers","4":"Ted Templeman, producer","_rn_":"2"},{"1":"1980[44]","2":"\"After the Love Has Gone\"","3":"Earth, Wind & Fire","4":"Maurice White, producer","_rn_":"3"},{"1":"1980[44]","2":"\"I Will Survive\"","3":"Gloria Gaynor","4":"Freddie Perren & Dino Fekaris, producers","_rn_":"4"},{"1":"1980[44]","2":"\"The Gambler\"","3":"Kenny Rogers","4":"Larry Butler, producer","_rn_":"5"},{"1":"1980[44]","2":"\"You Don't Bring Me Flowers\"","3":"Barbra Streisand & Neil Diamond","4":"Bob Gaudio, producer","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
-<pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuWFBBVEg5MCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbNl0nXG5YUEFUSDAwIDwtICcvaHRtbC9ib2R5L2RpdlszXS9kaXZbM10vZGl2WzVdL2RpdlsxXS90YWJsZVs3XSdcblhQQVRIMTAgPC0gJy9odG1sL2JvZHkvZGl2WzNdL2RpdlszXS9kaXZbNV0vZGl2WzFdL3RhYmxlWzhdJ1xuIyBydW4gdGhlIGZvbGxvd2luZyB0byBjcmVhdGUgdGFibGUgb2Ygc29uZ3MgZnJvbSAxOTgwc1xudGFibGVfMTk5MCA8LSBcbiAgd2VicGFnZSAlPiVcbiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIOTApICU+JVxuICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKVxudGFibGVfMjAwMCA8LSBcbiAgd2VicGFnZSAlPiVcbiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIMDApICU+JVxuICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKVxudGFibGVfMjAxMCA8LSBcbiAgd2VicGFnZSAlPiVcbiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIMTApICU+JVxuICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKVxuXG5kMTk5MCA8LSB0YWJsZV8xOTkwW1sxXV1cbmQyMDAwIDwtIHRhYmxlXzIwMDBbWzFdXVxuZDIwMTAgPC0gdGFibGVfMjAxMFtbMV1dXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>XPATH90 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[6]&#39;
-XPATH00 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[7]&#39;
-XPATH10 &lt;- &#39;/html/body/div[3]/div[3]/div[5]/div[1]/table[8]&#39;
 # run the following to create table of songs from 1980s
 table_1990 &lt;- 
   webpage %&gt;%
@@ -1853,6 +1832,7 @@ table_2010 &lt;-
   html_nodes(xpath = XPATH10) %&gt;%
   html_table(fill = TRUE)
 
+d1980 &lt;- table_1980[[1]]
 d1990 &lt;- table_1990[[1]]
 d2000 &lt;- table_2000[[1]]
 d2010 &lt;- table_2010[[1]]
@@ -1861,8 +1841,114 @@ d2010 &lt;- table_2010[[1]]
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kMTk4MDwtIG5hLm9taXQoZDE5ODApXG5kMTk5MDwtIG5hLm9taXQoZDE5OTApXG5kMjAwMDwtIG5hLm9taXQoZDIwMDApXG5kMjAxMDwtIG5hLm9taXQoZDIwMTApXG5cbm5hbWVzKGQxOTgwKVsxXSA8LSBcInllYXJcIlxubmFtZXMoZDE5OTApWzFdIDwtIFwieWVhclwiXG5uYW1lcyhkMjAwMClbMV0gPC0gXCJ5ZWFyXCJcbm5hbWVzKGQyMDEwKVsxXSA8LSBcInllYXJcIlxuXG5uYW1lcyhkMTk4MClbMl0gPC0gXCJ0cmFja1wiXG5uYW1lcyhkMTk5MClbMl0gPC0gXCJ0cmFja1wiXG5uYW1lcyhkMjAwMClbMl0gPC0gXCJ0cmFja1wiXG5uYW1lcyhkMjAxMClbMl0gPC0gXCJ0cmFja1wiXG5cbm5hbWVzKGQxOTgwKVszXSA8LSBcImFydGlzdFwiXG5uYW1lcyhkMTk5MClbM10gPC0gXCJhcnRpc3RcIlxubmFtZXMoZDIwMDApWzNdIDwtIFwiYXJ0aXN0XCJcbm5hbWVzKGQyMDEwKVszXSA8LSBcImFydGlzdFwiXG5cbmQxOTgwJGBQcm9kdWN0aW9uIHRlYW1gPC0gTlVMTFxuZDE5OTAkYFByb2R1Y3Rpb24gdGVhbWA8LSBOVUxMXG5kMjAwMCRgUHJvZHVjdGlvbiB0ZWFtYDwtIE5VTExcbmQyMDEwJGBQcm9kdWN0aW9uIHRlYW1gPC0gTlVMTFxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+d1980&lt;- na.omit(d1980)
+d1990&lt;- na.omit(d1990)
+d2000&lt;- na.omit(d2000)
+d2010&lt;- na.omit(d2010)
 
-<div id="rmd-source-code">LS0tDQphdXRob3I6ICJBYmhpc2hlayBNYWhhamFuIg0KdGl0bGU6ICJGaW5hbCBQcm9qZWN0IE5vdGVCb29rIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3IgaW5jbHVkZT1GQUxTRX0NCmxpYnJhcnkocnZlc3QpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2VuaXVzKQ0KYGBgDQoNClNjcmFwZSBhbmQgY3JlYXRlIHRhYmxlIG9mIHJlY29yZHMgZnJvbSAxOTgwcw0KYGBge3J9DQojIHJlYWQgd2VicGFnZSBmb3IgR3JhbW15IEF3YXJkcw0Kd2VicGFnZSA8LSByZWFkX2h0bWwoImh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL0dyYW1teV9Bd2FyZF9mb3JfUmVjb3JkX29mX3RoZV9ZZWFyIikNCg0KIyBjb3B5IHhwYXRoIGZvciB0YWJsZSBvZiAxOTgwcw0KWFBBVEg4MCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbNV0nDQoNCiMgcnVuIHRoZSBmb2xsb3dpbmcgdG8gY3JlYXRlIHRhYmxlIG9mIHNvbmdzIGZyb20gMTk4MHMNCnRhYmxlXzE5ODAgPC0gDQogIHdlYnBhZ2UgJT4lDQogIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDgwKSAlPiUNCiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSkNCg0KZDE5ODAgPC0gdGFibGVfMTk4MFtbMV1dDQoNCmhlYWQoZDE5ODApDQoNCmBgYA0KDQoNCmBgYHtyfQ0KWFBBVEg5MCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbNl0nDQpYUEFUSDAwIDwtICcvaHRtbC9ib2R5L2RpdlszXS9kaXZbM10vZGl2WzVdL2RpdlsxXS90YWJsZVs3XScNClhQQVRIMTAgPC0gJy9odG1sL2JvZHkvZGl2WzNdL2RpdlszXS9kaXZbNV0vZGl2WzFdL3RhYmxlWzhdJw0KIyBydW4gdGhlIGZvbGxvd2luZyB0byBjcmVhdGUgdGFibGUgb2Ygc29uZ3MgZnJvbSAxOTgwcw0KdGFibGVfMTk5MCA8LSANCiAgd2VicGFnZSAlPiUNCiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIOTApICU+JQ0KICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKQ0KdGFibGVfMjAwMCA8LSANCiAgd2VicGFnZSAlPiUNCiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIMDApICU+JQ0KICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKQ0KdGFibGVfMjAxMCA8LSANCiAgd2VicGFnZSAlPiUNCiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFhQQVRIMTApICU+JQ0KICBodG1sX3RhYmxlKGZpbGwgPSBUUlVFKQ0KDQpkMTk5MCA8LSB0YWJsZV8xOTkwW1sxXV0NCmQyMDAwIDwtIHRhYmxlXzIwMDBbWzFdXQ0KZDIwMTAgPC0gdGFibGVfMjAxMFtbMV1dDQoNCg0KDQpgYGANCg0K</div>
+names(d1980)[1] &lt;- &quot;year&quot;
+names(d1990)[1] &lt;- &quot;year&quot;
+names(d2000)[1] &lt;- &quot;year&quot;
+names(d2010)[1] &lt;- &quot;year&quot;
+
+names(d1980)[2] &lt;- &quot;track&quot;
+names(d1990)[2] &lt;- &quot;track&quot;
+names(d2000)[2] &lt;- &quot;track&quot;
+names(d2010)[2] &lt;- &quot;track&quot;
+
+names(d1980)[3] &lt;- &quot;artist&quot;
+names(d1990)[3] &lt;- &quot;artist&quot;
+names(d2000)[3] &lt;- &quot;artist&quot;
+names(d2010)[3] &lt;- &quot;artist&quot;
+
+d1980$`Production team`&lt;- NULL
+d1990$`Production team`&lt;- NULL
+d2000$`Production team`&lt;- NULL
+d2010$`Production team`&lt;- NULL
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI1JlbW92aW5nIHRoZSBicmFja2V0cyBpbiB0aGUgeWVhciBjb2x1bW5cbmQxOTgwJHllYXIgPC0gZ3N1YihcIlteMC05Li1dXCIsIFwiXCIsIGQxOTgwJHllYXIpXG5kMTk5MCR5ZWFyIDwtIGdzdWIoXCJbXjAtOS4tXVwiLCBcIlwiLCBkMTk5MCR5ZWFyKVxuZDIwMDAkeWVhciA8LSBnc3ViKFwiW14wLTkuLV1cIiwgXCJcIiwgZDIwMDAkeWVhcilcbmQyMDEwJHllYXIgPC0gZ3N1YihcIlteMC05Li1dXCIsIFwiXCIsIGQyMDEwJHllYXIpXG5cbiNSZW1vdmluZyB0aGUgbGFzdCAyIG51bWJlcnMgZnJvbSB0aGUgcm93cyB0byBnaXZlIHVzIHRoZSBZZWFyXG5kMTk4MCR5ZWFyIDwtIHN1YnN0cihkMTk4MCR5ZWFyLDEsNClcbmQxOTkwJHllYXIgPC0gc3Vic3RyKGQxOTkwJHllYXIsMSw0KVxuZDIwMDAkeWVhciA8LSBzdWJzdHIoZDIwMDAkeWVhciwxLDQpXG5kMjAxMCR5ZWFyIDwtIHN1YnN0cihkMjAxMCR5ZWFyLDEsNClcblxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>#Removing the brackets in the year column
+d1980$year &lt;- gsub(&quot;[^0-9.-]&quot;, &quot;&quot;, d1980$year)
+d1990$year &lt;- gsub(&quot;[^0-9.-]&quot;, &quot;&quot;, d1990$year)
+d2000$year &lt;- gsub(&quot;[^0-9.-]&quot;, &quot;&quot;, d2000$year)
+d2010$year &lt;- gsub(&quot;[^0-9.-]&quot;, &quot;&quot;, d2010$year)
+
+#Removing the last 2 numbers from the rows to give us the Year
+d1980$year &lt;- substr(d1980$year,1,4)
+d1990$year &lt;- substr(d1990$year,1,4)
+d2000$year &lt;- substr(d2000$year,1,4)
+d2010$year &lt;- substr(d2010$year,1,4)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NvbWJpbmluZyBhbGwgbHlyaWNhbCBkYXRhZnJhbWVzIGZyb20gMTk4MCdzLTIwMTAnc1xubHlyaWNzQ29tYmluZWQ8LSBkby5jYWxsKFwicmJpbmRcIiwgbGlzdChseXJpY3M4MCxseXJpY3M5MCxseXJpY3MwMCxseXJpY3MxMCkpXG5cbmBgYCJ9 -->
+<pre class="r"><code>#combining all lyrical dataframes from 1980&#39;s-2010&#39;s
+lyricsCombined&lt;- do.call(&quot;rbind&quot;, list(lyrics80,lyrics90,lyrics00,lyrics10))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5seXJpY3NDb21iaW5lZCREZWNhZGUgPSBcIlwiXG5seXJpY3NDb21iaW5lZCREZWNhZGUgPC0gc3Vic3RyKGx5cmljc0NvbWJpbmVkJHllYXIsMSwzKVxubHlyaWNzQ29tYmluZWQkRGVjYWRlIDwtIHBhc3RlMChseXJpY3NDb21iaW5lZCREZWNhZGUsIFwiMHNcIilcblxuXG5gYGAifQ== -->
+<pre class="r"><code>
+lyricsCombined$Decade = &quot;&quot;
+lyricsCombined$Decade &lt;- substr(lyricsCombined$year,1,3)
+lyricsCombined$Decade &lt;- paste0(lyricsCombined$Decade, &quot;0s&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NyZWF0ZXMgYSBkZiB3aXRoIGVhY2ggcm93IGNvcnJlc3BvbmRpbmcgdG8gYSB3b3JkIGluIHRoZSBseXJpY1xudmVyc2Vfd29yZHMgPC0gbHlyaWNzQ29tYmluZWQgJT4lXG4gIHVubmVzdF90b2tlbnMod29yZCwgbHlyaWMpXG4jYWdncmVnYXRpbmcgYWxsIG9mIHRoZSB3b3JkcyB0byBmaW5kIHNvbmcgd29yZCBjb3VudFxudmVyc2Vfd29yZHMgPC1cbiAgdmVyc2Vfd29yZHMgJT4lXG4gIGdyb3VwX2J5KHRyYWNrLERlY2FkZSkgJT4lXG4gIHN1bW1hcmlzZSh0b3RhbFdvcmRzPSBuKCkpXG5cblxuYGBgIn0= -->
+<pre class="r"><code>#creates a df with each row corresponding to a word in the lyric
+verse_words &lt;- lyricsCombined %&gt;%
+  unnest_tokens(word, lyric)
+#aggregating all of the words to find song word count
+verse_words &lt;-
+  verse_words %&gt;%
+  group_by(track,Decade) %&gt;%
+  summarise(totalWords= n())
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>###Graph 1</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0dyYXBoICMxXG52ZXJzZV93b3JkcyAlPiVcbiAgZ2dwbG90KGFlcyh4PURlY2FkZSx5PXRvdGFsV29yZHMsZmlsbD1EZWNhZGUpKSArXG4gIGdlb21fYm94cGxvdChzaG93LmxlZ2VuZCA9IEZBTFNFKSArXG4gIHlsYWIoXCJXb3JkcyBwZXIgU29uZ1wiKSArIFxuICBnZ3RpdGxlKFwiQm94cGxvdHMgb2YgV29yZHMgcGVyIEdyYW1teSBOb21pbmF0ZWQgU29uZyBieSBEZWNhZGVcIilcbmBgYCJ9 -->
+<pre class="r"><code>#Graph #1
+verse_words %&gt;%
+  ggplot(aes(x=Decade,y=totalWords,fill=Decade)) +
+  geom_boxplot(show.legend = FALSE) +
+  ylab(&quot;Words per Song&quot;) + 
+  ggtitle(&quot;Boxplots of Words per Grammy Nominated Song by Decade&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQyMC4yNzE5LCJ3aWR0aCI6NjgwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQphdXRob3I6ICJBYmhpc2hlayBNYWhhamFuIg0KdGl0bGU6ICJGaW5hbCBQcm9qZWN0IE5vdGVCb29rIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3IgaW5jbHVkZT1GQUxTRX0NCmxpYnJhcnkocnZlc3QpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkodGlkeXRleHQpDQpsaWJyYXJ5KGdlbml1cykNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KGdyaWRFeHRyYSkNCmRhdGEoInN0b3Bfd29yZHMiKQ0KDQpgYGANCg0KU2NyYXBlIGFuZCBjcmVhdGUgdGFibGUgb2YgcmVjb3JkcyBmcm9tIDE5ODBzDQpgYGB7cn0NCiMgcmVhZCB3ZWJwYWdlIGZvciBHcmFtbXkgQXdhcmRzDQp3ZWJwYWdlIDwtIHJlYWRfaHRtbCgiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvR3JhbW15X0F3YXJkX2Zvcl9SZWNvcmRfb2ZfdGhlX1llYXIiKQ0KDQojIGNvcHkgeHBhdGggZm9yIHRhYmxlIG9mIDE5ODBzDQpYUEFUSDgwIDwtICcvaHRtbC9ib2R5L2RpdlszXS9kaXZbM10vZGl2WzVdL2RpdlsxXS90YWJsZVs1XScNClhQQVRIOTAgPC0gJy9odG1sL2JvZHkvZGl2WzNdL2RpdlszXS9kaXZbNV0vZGl2WzFdL3RhYmxlWzZdJw0KWFBBVEgwMCA8LSAnL2h0bWwvYm9keS9kaXZbM10vZGl2WzNdL2Rpdls1XS9kaXZbMV0vdGFibGVbN10nDQpYUEFUSDEwIDwtICcvaHRtbC9ib2R5L2RpdlszXS9kaXZbM10vZGl2WzVdL2RpdlsxXS90YWJsZVs4XScNCiMgcnVuIHRoZSBmb2xsb3dpbmcgdG8gY3JlYXRlIHRhYmxlIG9mIHNvbmdzIGZyb20gMTk4MHMNCnRhYmxlXzE5ODAgPC0gDQogIHdlYnBhZ2UgJT4lDQogIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDgwKSAlPiUNCiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSkNCiMgcnVuIHRoZSBmb2xsb3dpbmcgdG8gY3JlYXRlIHRhYmxlIG9mIHNvbmdzIGZyb20gMTk4MHMNCnRhYmxlXzE5OTAgPC0gDQogIHdlYnBhZ2UgJT4lDQogIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDkwKSAlPiUNCiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSkNCnRhYmxlXzIwMDAgPC0gDQogIHdlYnBhZ2UgJT4lDQogIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDAwKSAlPiUNCiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSkNCnRhYmxlXzIwMTAgPC0gDQogIHdlYnBhZ2UgJT4lDQogIGh0bWxfbm9kZXMoeHBhdGggPSBYUEFUSDEwKSAlPiUNCiAgaHRtbF90YWJsZShmaWxsID0gVFJVRSkNCg0KZDE5ODAgPC0gdGFibGVfMTk4MFtbMV1dDQpkMTk5MCA8LSB0YWJsZV8xOTkwW1sxXV0NCmQyMDAwIDwtIHRhYmxlXzIwMDBbWzFdXQ0KZDIwMTAgPC0gdGFibGVfMjAxMFtbMV1dDQoNCg0KDQpgYGANCg0KDQpgYGB7cn0NCiNPbWl0dGluZyBhbGwgTkEgY29sdW1ucw0KZDE5ODA8LSBuYS5vbWl0KGQxOTgwKQ0KZDE5OTA8LSBuYS5vbWl0KGQxOTkwKQ0KZDIwMDA8LSBuYS5vbWl0KGQyMDAwKQ0KZDIwMTA8LSBuYS5vbWl0KGQyMDEwKQ0KDQojUmVuYW1pbmcgY29sdW1ucw0KbmFtZXMoZDE5ODApWzFdIDwtICJ5ZWFyIg0KbmFtZXMoZDE5OTApWzFdIDwtICJ5ZWFyIg0KbmFtZXMoZDIwMDApWzFdIDwtICJ5ZWFyIg0KbmFtZXMoZDIwMTApWzFdIDwtICJ5ZWFyIg0KDQpuYW1lcyhkMTk4MClbMl0gPC0gInRyYWNrIg0KbmFtZXMoZDE5OTApWzJdIDwtICJ0cmFjayINCm5hbWVzKGQyMDAwKVsyXSA8LSAidHJhY2siDQpuYW1lcyhkMjAxMClbMl0gPC0gInRyYWNrIg0KDQpuYW1lcyhkMTk4MClbM10gPC0gImFydGlzdCINCm5hbWVzKGQxOTkwKVszXSA8LSAiYXJ0aXN0Ig0KbmFtZXMoZDIwMDApWzNdIDwtICJhcnRpc3QiDQpuYW1lcyhkMjAxMClbM10gPC0gImFydGlzdCINCg0KI0Ryb3BwaW5nIFByb2R1Y3Rpb24gVGVhbSBDb2x1bW4NCmQxOTgwJGBQcm9kdWN0aW9uIHRlYW1gPC0gTlVMTA0KZDE5OTAkYFByb2R1Y3Rpb24gdGVhbWA8LSBOVUxMDQpkMjAwMCRgUHJvZHVjdGlvbiB0ZWFtYDwtIE5VTEwNCmQyMDEwJGBQcm9kdWN0aW9uIHRlYW1gPC0gTlVMTA0KDQoNCmBgYA0KDQoNCmBgYHtyfQ0KI1JlbW92aW5nIHRoZSBicmFja2V0cyBpbiB0aGUgeWVhciBjb2x1bW4NCmQxOTgwJHllYXIgPC0gZ3N1YigiW14wLTkuLV0iLCAiIiwgZDE5ODAkeWVhcikNCmQxOTkwJHllYXIgPC0gZ3N1YigiW14wLTkuLV0iLCAiIiwgZDE5OTAkeWVhcikNCmQyMDAwJHllYXIgPC0gZ3N1YigiW14wLTkuLV0iLCAiIiwgZDIwMDAkeWVhcikNCmQyMDEwJHllYXIgPC0gZ3N1YigiW14wLTkuLV0iLCAiIiwgZDIwMTAkeWVhcikNCg0KI1JlbW92aW5nIHRoZSBsYXN0IDIgbnVtYmVycyBmcm9tIHRoZSByb3dzIHRvIGdpdmUgdXMgdGhlIFllYXINCmQxOTgwJHllYXIgPC0gc3Vic3RyKGQxOTgwJHllYXIsMSw0KQ0KZDE5OTAkeWVhciA8LSBzdWJzdHIoZDE5OTAkeWVhciwxLDQpDQpkMjAwMCR5ZWFyIDwtIHN1YnN0cihkMjAwMCR5ZWFyLDEsNCkNCmQyMDEwJHllYXIgPC0gc3Vic3RyKGQyMDEwJHllYXIsMSw0KQ0KDQoNCmBgYA0KDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQpseXJpY3M4MCA8LSBkMTk4MCU+JQ0KICBhZGRfZ2VuaXVzKGFydGlzdCwgdHJhY2ssIHR5cGUgPSAibHlyaWNzIikNCmx5cmljczkwIDwtIGQxOTkwJT4lDQogIGFkZF9nZW5pdXMoYXJ0aXN0LCB0cmFjaywgdHlwZSA9ICJseXJpY3MiKQ0KbHlyaWNzMDAgPC0gZDIwMDAlPiUNCiAgYWRkX2dlbml1cyhhcnRpc3QsIHRyYWNrLCB0eXBlID0gImx5cmljcyIpDQpseXJpY3MxMCA8LSBkMjAxMCU+JQ0KICBhZGRfZ2VuaXVzKGFydGlzdCwgdHJhY2ssIHR5cGUgPSAibHlyaWNzIikNCg0KYGBgDQoNCg0KYGBge3J9DQojY29tYmluaW5nIGFsbCBseXJpY2FsIGRhdGFmcmFtZXMgZnJvbSAxOTgwJ3MtMjAxMCdzDQpseXJpY3NDb21iaW5lZDwtIGRvLmNhbGwoInJiaW5kIiwgbGlzdChseXJpY3M4MCxseXJpY3M5MCxseXJpY3MwMCxseXJpY3MxMCkpDQoNCmBgYA0KDQpgYGB7cn0NCiNDcmVhdGluZyBhIGRlY2FkZXMgY29sdW1uDQpseXJpY3NDb21iaW5lZCREZWNhZGUgPSAiIg0KbHlyaWNzQ29tYmluZWQkRGVjYWRlIDwtIHN1YnN0cihseXJpY3NDb21iaW5lZCR5ZWFyLDEsMykNCmx5cmljc0NvbWJpbmVkJERlY2FkZSA8LSBwYXN0ZTAobHlyaWNzQ29tYmluZWQkRGVjYWRlLCAiMHMiKQ0KDQoNCmBgYA0KDQpgYGB7cn0NCiNjcmVhdGVzIGEgZGYgd2l0aCBlYWNoIHJvdyBjb3JyZXNwb25kaW5nIHRvIGEgd29yZCBpbiB0aGUgbHlyaWMNCnZlcnNlX3dvcmRzIDwtIGx5cmljc0NvbWJpbmVkICU+JQ0KICB1bm5lc3RfdG9rZW5zKHdvcmQsIGx5cmljKQ0KI2FnZ3JlZ2F0aW5nIGFsbCBvZiB0aGUgd29yZHMgdG8gZmluZCBzb25nIHdvcmQgY291bnQNCnZlcnNlX3dvcmRzIDwtDQogIHZlcnNlX3dvcmRzICU+JQ0KICBncm91cF9ieSh0cmFjayxEZWNhZGUpICU+JQ0KICBzdW1tYXJpc2UodG90YWxXb3Jkcz0gbigpKQ0KDQoNCmBgYA0KIyMjR3JhcGggMQ0KYGBge3J9DQojR3JhcGggIzENCnZlcnNlX3dvcmRzICU+JQ0KICBnZ3Bsb3QoYWVzKHg9RGVjYWRlLHk9dG90YWxXb3JkcyxmaWxsPURlY2FkZSkpICsNCiAgZ2VvbV9ib3hwbG90KHNob3cubGVnZW5kID0gRkFMU0UpICsNCiAgeWxhYigiV29yZHMgcGVyIFNvbmciKSArIA0KICBnZ3RpdGxlKCJCb3hwbG90cyBvZiBXb3JkcyBwZXIgR3JhbW15IE5vbWluYXRlZCBTb25nIGJ5IERlY2FkZSIpDQogIA0KYGBgDQoNCg==</div>
 
 
 

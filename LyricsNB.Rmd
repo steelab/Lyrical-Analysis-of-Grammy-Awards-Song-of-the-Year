@@ -7,7 +7,12 @@ output: html_notebook
 ```{r include=FALSE}
 library(rvest)
 library(tidyverse)
+library(tidytext)
 library(genius)
+library(dplyr)
+library(gridExtra)
+data("stop_words")
+
 ```
 
 Scrape and create table of records from 1980s
@@ -17,24 +22,14 @@ webpage <- read_html("https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_t
 
 # copy xpath for table of 1980s
 XPATH80 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[5]'
-
+XPATH90 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[6]'
+XPATH00 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[7]'
+XPATH10 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[8]'
 # run the following to create table of songs from 1980s
 table_1980 <- 
   webpage %>%
   html_nodes(xpath = XPATH80) %>%
   html_table(fill = TRUE)
-
-d1980 <- table_1980[[1]]
-
-head(d1980)
-
-```
-
-
-```{r}
-XPATH90 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[6]'
-XPATH00 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[7]'
-XPATH10 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[8]'
 # run the following to create table of songs from 1980s
 table_1990 <- 
   webpage %>%
@@ -49,11 +44,114 @@ table_2010 <-
   html_nodes(xpath = XPATH10) %>%
   html_table(fill = TRUE)
 
+d1980 <- table_1980[[1]]
 d1990 <- table_1990[[1]]
 d2000 <- table_2000[[1]]
 d2010 <- table_2010[[1]]
 
 
 
+```
+
+
+```{r}
+#Omitting all NA columns
+d1980<- na.omit(d1980)
+d1990<- na.omit(d1990)
+d2000<- na.omit(d2000)
+d2010<- na.omit(d2010)
+
+#Renaming columns
+names(d1980)[1] <- "year"
+names(d1990)[1] <- "year"
+names(d2000)[1] <- "year"
+names(d2010)[1] <- "year"
+
+names(d1980)[2] <- "track"
+names(d1990)[2] <- "track"
+names(d2000)[2] <- "track"
+names(d2010)[2] <- "track"
+
+names(d1980)[3] <- "artist"
+names(d1990)[3] <- "artist"
+names(d2000)[3] <- "artist"
+names(d2010)[3] <- "artist"
+
+#Dropping Production Team Column
+d1980$`Production team`<- NULL
+d1990$`Production team`<- NULL
+d2000$`Production team`<- NULL
+d2010$`Production team`<- NULL
+
+
+```
+
+
+```{r}
+#Removing the brackets in the year column
+d1980$year <- gsub("[^0-9.-]", "", d1980$year)
+d1990$year <- gsub("[^0-9.-]", "", d1990$year)
+d2000$year <- gsub("[^0-9.-]", "", d2000$year)
+d2010$year <- gsub("[^0-9.-]", "", d2010$year)
+
+#Removing the last 2 numbers from the rows to give us the Year
+d1980$year <- substr(d1980$year,1,4)
+d1990$year <- substr(d1990$year,1,4)
+d2000$year <- substr(d2000$year,1,4)
+d2010$year <- substr(d2010$year,1,4)
+
+
+```
+
+
+```{r include=FALSE}
+lyrics80 <- d1980%>%
+  add_genius(artist, track, type = "lyrics")
+lyrics90 <- d1990%>%
+  add_genius(artist, track, type = "lyrics")
+lyrics00 <- d2000%>%
+  add_genius(artist, track, type = "lyrics")
+lyrics10 <- d2010%>%
+  add_genius(artist, track, type = "lyrics")
+
+```
+
+
+```{r}
+#combining all lyrical dataframes from 1980's-2010's
+lyricsCombined<- do.call("rbind", list(lyrics80,lyrics90,lyrics00,lyrics10))
+
+```
+
+```{r}
+#Creating a decades column
+lyricsCombined$Decade = ""
+lyricsCombined$Decade <- substr(lyricsCombined$year,1,3)
+lyricsCombined$Decade <- paste0(lyricsCombined$Decade, "0s")
+
+
+```
+
+```{r}
+#creates a df with each row corresponding to a word in the lyric
+verse_words <- lyricsCombined %>%
+  unnest_tokens(word, lyric)
+#aggregating all of the words to find song word count
+verse_words <-
+  verse_words %>%
+  group_by(track,Decade) %>%
+  summarise(totalWords= n())
+
+
+```
+###Graph 1
+```{r}
+#Graph #1
+verse_words %>%
+  ggplot(aes(x=Decade,y=totalWords,fill=Decade)) +
+  geom_boxplot(show.legend = FALSE) +
+  ylab("Words per Song") + 
+  ggtitle("Boxplots of Words per Grammy Nominated Song by Decade")
+  
 ```
 
