@@ -1,0 +1,59 @@
+---
+author: "Abhishek Mahajan"
+title: "Final Project NoteBook"
+output: html_notebook
+---
+
+```{r include=FALSE}
+library(rvest)
+library(tidyverse)
+library(genius)
+```
+
+Scrape and create table of records from 1980s
+```{r}
+# read webpage for Grammy Awards
+webpage <- read_html("https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year")
+
+# copy xpath for table of 1980s
+XPATH80 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[5]'
+
+# run the following to create table of songs from 1980s
+table_1980 <- 
+  webpage %>%
+  html_nodes(xpath = XPATH80) %>%
+  html_table(fill = TRUE)
+
+d1980 <- table_1980[[1]]
+
+head(d1980)
+
+```
+
+
+```{r}
+XPATH90 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[6]'
+XPATH00 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[7]'
+XPATH10 <- '/html/body/div[3]/div[3]/div[5]/div[1]/table[8]'
+# run the following to create table of songs from 1980s
+table_1990 <- 
+  webpage %>%
+  html_nodes(xpath = XPATH90) %>%
+  html_table(fill = TRUE)
+table_2000 <- 
+  webpage %>%
+  html_nodes(xpath = XPATH00) %>%
+  html_table(fill = TRUE)
+table_2010 <- 
+  webpage %>%
+  html_nodes(xpath = XPATH10) %>%
+  html_table(fill = TRUE)
+
+d1990 <- table_1990[[1]]
+d2000 <- table_2000[[1]]
+d2010 <- table_2010[[1]]
+
+
+
+```
+
