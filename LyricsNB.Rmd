@@ -175,17 +175,72 @@ x$V1 = NULL
 df_Stopwords_removed <- df_Stopwords_removed %>%
   anti_join(x)
 
+#Counting top 10 frequent words
 topten <- df_Stopwords_removed %>%
   count(word, sort = FALSE) %>%
-  filter(n >= 3) %>%
   top_n(10)
 
 
+```
+
+```{r}
+#Graph Number 2
 topten %>% 
-  ggplot(aes(x=word,y=n)) +
-  geom_col()+
+  ggplot() +
+  geom_col(aes(reorder(word,-n),n))+
   labs(title = "Ten Most Popular Words of Grammy Nominated Songs from 1980 - 2019",
        x="Word",y="Count")
+```
+
+```{r}
+topyear <- df_Stopwords_removed %>% 
+  group_by(Decade) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10)
+
+
+#Creating Graph #3
+#We must create 4 separate graphs then combine them
+
+
+
+g3_80s <- topyear %>% 
+  filter(Decade == "1980s")%>%
+  ggplot(aes()) +
+  geom_col(aes(reorder(word,-n),n))+
+  labs(title = "1980's",
+       x="Word",y="Count")
+
+g3_90s <- topyear %>% 
+  filter(Decade == "1990s")%>%
+  ggplot() +
+  geom_col(aes(reorder(word,-n),n),fill = "#FF6666")+
+  labs(title = "1990's",
+       x="Word",y="Count")
+
+g3_00s <- topyear %>% 
+  filter(Decade == "2000s")%>%
+  ggplot() +
+  geom_col(aes(reorder(word,-n),n),fill="red")+
+  labs(title = "2000's",
+       x="Word",y="Count")
+
+g3_10s <- topyear %>% 
+  filter(Decade == "2010s")%>%
+  ggplot() +
+  geom_col(aes(reorder(word,-n),n),fill = "#69b3a2")+
+  labs(title = "2010's",
+       x="Word",y="Count")
+
+
+#Combining 4 graphs
+grid.arrange(top="Top Ten Words by Decade",g3_80s, g3_90s,g3_00s,g3_10s, ncol=2)
+
+
+```
+
+
+```{r}
 
 ```
 
