@@ -241,6 +241,28 @@ grid.arrange(top="Top Ten Words by Decade",g3_80s, g3_90s,g3_00s,g3_10s, ncol=2)
 
 
 ```{r}
+#Joining sentiment from tidytext to our filtered df 
+df_sentiments <- df_Stopwords_removed %>%
+  inner_join(sentiments)
+
+
+#mapping 0 to negative and 1 to positive in the sentiment column
+df_sentiments$sentiment[df_sentiments$sentiment=="negative"] <-0
+df_sentiments$sentiment[df_sentiments$sentiment=="positive"] <-1
+df_sentiments$sentiment <- as.numeric(df_sentiments$sentiment)
+
+#Aggregating data to calculate net sentiment
+df_sentiments <-df_sentiments %>%
+  group_by(year,Decade) %>%
+  summarise(total = sum(sentiment)) 
+
+#Graph #4
+df_sentiments %>%
+ggplot(aes(x=year,y=total,fill= Decade))+
+  geom_col() +
+  labs(title = "Net Seniment Score by Year",y="Net Sentiment",x="Year")+
+  scale_x_discrete(breaks = seq(1980, 2010, by = 10))
+  
 
 ```
 
