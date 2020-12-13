@@ -1,10 +1,13 @@
 ---
-author: "Abhishek Mahajan"
 title: "Lyrical Analysis of Grammy Awards Song of the Year"
-output: html_notebook
+author: "Abhishek Mahajan"
+date: "12/13/2020"
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r include=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 library(rvest)
 library(tidyverse)
 library(tidytext)
@@ -104,7 +107,8 @@ d2010$year <- substr(d2010$year,1,4)
 ```
 
 
-```{r include=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+#Adding lyrics to dataframes
 lyrics80 <- d1980%>%
   add_genius(artist, track, type = "lyrics")
 lyrics90 <- d1990%>%
@@ -145,7 +149,11 @@ verse_words <-
 
 
 ```
-###Graph 1
+###Graph 1   Boxplots of Words per Grammy Nominated Song by Decade
+
+This graph shows us the spread of words in each Grammy nominated song by decade.
+As you can see the median of words per song seems to be slightly higher in the
+later decades. 
 ```{r}
 #Graph #1
 verse_words %>%
@@ -157,6 +165,13 @@ verse_words %>%
 ```
 
 ###Removing Stopwords
+To remove stop words we take the lyricsCombined data frame and use the unnest_tokens
+function to break down every word from the lyrics column. This allows us to see 
+every single word as a single observation. From there we anti_join the list with 
+the stop_words which will remove the union of the two datasets. Finally we read 
+in our text file with the additional stop words and anti_join them from our dataset
+there by removing the additonal stop words. We now have a dataframe without our
+stop words and can conduct further analysis. 
 ```{r}
 #removing stop words
 df_Stopwords_removed <- lyricsCombined %>%
@@ -183,6 +198,10 @@ topten <- df_Stopwords_removed %>%
 
 ```
 
+###Graph #2 Ten Most Popular Words of Grammy Nominated Songs from 1980 - 2019 
+Here we get to look at the most popular words from the nominated songs without
+the stop words. From this graph it is every clear that "love" is the most popular
+word throughout all of the songs. 
 ```{r}
 #Graph Number 2
 topten %>% 
@@ -233,13 +252,24 @@ g3_10s <- topyear %>%
   labs(title = "2010's",
        x="Word",y="Count")
 
-
-#Combining 4 graphs
-grid.arrange(top="Top Ten Words by Decade",g3_80s, g3_90s,g3_00s,g3_10s, ncol=2)
-
-
 ```
 
+###Graph 4
+Here we look at a graph similar to the second one, but this gives us deeper 
+insight into what goes on in each decade. Upon looking at the data it is clear 
+that love is not only the most popular word in these songs, but it has been for 
+the past 4 decades. 
+
+```{r}
+#Combining 4 graphs
+grid.arrange(top="Top Ten Words by Decade",g3_80s, g3_90s,g3_00s,g3_10s, ncol=2)
+```
+
+###Graph 4
+Our graph here shows net sentiment in the songs over the years. While it is 
+clear that sentiment varies over the years there is not a very strong pattern
+that make any one decade stand out. In general, there seems to be a few years 
+of highs/positives followed by a few year of lows/negatives and that cycle repeats.
 
 ```{r}
 #Joining sentiment from tidytext to our filtered df 
@@ -267,7 +297,11 @@ ggplot(aes(x=year,y=total,fill= Decade))+
 
 ```
 
-
+###Graph #5
+Here we get to see a different perspective on the same data from graph number 4. 
+The mean sentiment is shown however one decade is not significantly better
+than the other. With that being said the songs of the 80's do seem to have a 
+slighly higher sentiment. 
 ```{r}
 #Graph 5
 df_sentiments %>%
@@ -278,9 +312,15 @@ df_sentiments %>%
   labs(title = "Mean Sentiment Score by Decade",x="Decade",y="Mean Sentiment Score")
   
 ```
-
+###Graph 6
+This data is very similar to graph number 4 but once again presented in a different
+way, this time we have a point graph. Here the cycical nature becomes slightly more 
+clear as you can see years with ups followed by years with downs. When we look 
+at the line of best fit, we can see that there is no strong correlation and that
+for the most part the mean sentiment over the years stays the same when you balance
+out the lows and highs. 
 ```{r}
-#Graph 5
+#Graph 6
 df_sentiments$year <- as.numeric(df_sentiments$year)
 df_sentiments %>%
   ggplot(aes(x=year,y=total,color=Decade))+
