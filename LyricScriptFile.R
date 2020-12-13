@@ -1,10 +1,4 @@
----
-author: "Abhishek Mahajan"
-title: "Lyrical Analysis of Grammy Awards Song of the Year"
-output: html_notebook
----
 
-```{r include=FALSE}
 library(rvest)
 library(tidyverse)
 library(tidytext)
@@ -13,10 +7,8 @@ library(dplyr)
 library(gridExtra)
 data("stop_words")
 
-```
+#Please refer to RMD, this is just raw code from a notebook file
 
-Scrape and create table of records from 1980s
-```{r}
 # read webpage for Grammy Awards
 webpage <- read_html("https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year")
 
@@ -51,10 +43,10 @@ d2010 <- table_2010[[1]]
 
 
 
-```
 
 
-```{r}
+
+
 #Omitting all NA columns
 d1980<- na.omit(d1980)
 d1990<- na.omit(d1990)
@@ -84,10 +76,10 @@ d2000$`Production team`<- NULL
 d2010$`Production team`<- NULL
 
 
-```
 
 
-```{r}
+
+
 #Removing the brackets in the year column
 d1980$year <- gsub("[^0-9.-]", "", d1980$year)
 d1990$year <- gsub("[^0-9.-]", "", d1990$year)
@@ -101,10 +93,10 @@ d2000$year <- substr(d2000$year,1,4)
 d2010$year <- substr(d2010$year,1,4)
 
 
-```
 
 
-```{r include=FALSE}
+
+ 
 lyrics80 <- d1980%>%
   add_genius(artist, track, type = "lyrics")
 lyrics90 <- d1990%>%
@@ -114,25 +106,25 @@ lyrics00 <- d2000%>%
 lyrics10 <- d2010%>%
   add_genius(artist, track, type = "lyrics")
 
-```
 
 
-```{r}
+
+
 #combining all lyrical dataframes from 1980's-2010's
 lyricsCombined<- do.call("rbind", list(lyrics80,lyrics90,lyrics00,lyrics10))
 
-```
 
-```{r}
+
+
 #Creating a decades column
 lyricsCombined$Decade = ""
 lyricsCombined$Decade <- substr(lyricsCombined$year,1,3)
 lyricsCombined$Decade <- paste0(lyricsCombined$Decade, "0s")
 
 
-```
 
-```{r include=FALSE}
+
+ 
 #creates a df with each row corresponding to a word in the lyric
 verse_words <- lyricsCombined %>%
   unnest_tokens(word, lyric)
@@ -144,20 +136,20 @@ verse_words <-
   summarise(totalWords= n())
 
 
-```
+
 ###Graph 1
-```{r}
+
 #Graph #1
 verse_words %>%
   ggplot(aes(x=Decade,y=totalWords,fill=Decade)) +
   geom_boxplot(show.legend = FALSE) +
   ylab("Words per Song") + 
   ggtitle("Boxplots of Words per Grammy Nominated Song by Decade")
-  
-```
+
+
 
 ###Removing Stopwords
-```{r}
+
 #removing stop words
 df_Stopwords_removed <- lyricsCombined %>%
   unnest_tokens(word, lyric)
@@ -181,18 +173,18 @@ topten <- df_Stopwords_removed %>%
   top_n(10)
 
 
-```
 
-```{r}
+
+
 #Graph Number 2
 topten %>% 
   ggplot() +
   geom_col(aes(reorder(word,-n),n))+
   labs(title = "Ten Most Popular Words of Grammy Nominated Songs from 1980 - 2019",
        x="Word",y="Count")
-```
 
-```{r}
+
+
 topyear <- df_Stopwords_removed %>% 
   group_by(Decade) %>%
   count(word, sort = TRUE) %>%
@@ -237,10 +229,10 @@ g3_10s <- topyear %>%
 grid.arrange(top="Top Ten Words by Decade",g3_80s, g3_90s,g3_00s,g3_10s, ncol=2)
 
 
-```
 
 
-```{r}
+
+
 #Joining sentiment from tidytext to our filtered df 
 df_sentiments <- df_Stopwords_removed %>%
   inner_join(sentiments)
@@ -258,16 +250,16 @@ df_sentiments <-df_sentiments %>%
 
 #Graph #4
 df_sentiments %>%
-ggplot(aes(x=year,y=total,fill= Decade))+
+  ggplot(aes(x=year,y=total,fill= Decade))+
   geom_col() +
   labs(title = "Net Seniment Score by Year",y="Net Sentiment",x="Year")+
   scale_x_discrete(breaks = seq(1980, 2020, by = 10))
-  
-
-```
 
 
-```{r}
+
+
+
+
 #Graph 5
 df_sentiments %>%
   group_by(Decade)%>%
@@ -275,10 +267,10 @@ df_sentiments %>%
   ggplot(aes(x=Decade,y=meanSentiment)) + 
   geom_col(fill="blue") + 
   labs(title = "Mean Sentiment Score by Decade",x="Decade",y="Mean Sentiment Score")
-  
-```
 
-```{r}
+
+
+
 #Graph 5
 df_sentiments$year <- as.numeric(df_sentiments$year)
 df_sentiments %>%
@@ -289,5 +281,5 @@ df_sentiments %>%
        from 1980 - 2019 with Linear Model Fit",x="Year",y="Net Sentiment")+
   scale_x_discrete(breaks = seq(1980, 2020, by = 10))
 
-```
+
 
