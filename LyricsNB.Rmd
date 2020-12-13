@@ -261,13 +261,14 @@ df_sentiments %>%
 ggplot(aes(x=year,y=total,fill= Decade))+
   geom_col() +
   labs(title = "Net Seniment Score by Year",y="Net Sentiment",x="Year")+
-  scale_x_discrete(breaks = seq(1980, 2010, by = 10))
+  scale_x_discrete(breaks = seq(1980, 2020, by = 10))
   
 
 ```
 
 
 ```{r}
+#Graph 5
 df_sentiments %>%
   group_by(Decade)%>%
   summarise(meanSentiment = sum(total)/10)%>%
@@ -275,5 +276,18 @@ df_sentiments %>%
   geom_col(fill="blue") + 
   labs(title = "Mean Sentiment Score by Decade",x="Decade",y="Mean Sentiment Score")
   
+```
+
+```{r}
+#Graph 5
+df_sentiments$year <- as.numeric(df_sentiments$year)
+df_sentiments %>%
+  ggplot(aes(x=year,y=total,color=Decade))+
+  geom_point() + 
+  geom_smooth(method="lm",color="red")+
+  labs(title = "Net Sentiment Score by Year of Grammy Nominated Records 
+       from 1980 - 2019 with Linear Model Fit",x="Year",y="Net Sentiment")+
+  scale_x_discrete(breaks = seq(1980, 2020, by = 10))
+
 ```
 
