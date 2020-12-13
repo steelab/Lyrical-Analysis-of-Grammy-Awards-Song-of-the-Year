@@ -266,3 +266,14 @@ ggplot(aes(x=year,y=total,fill= Decade))+
 
 ```
 
+
+```{r}
+df_sentiments %>%
+  group_by(Decade)%>%
+  summarise(meanSentiment = sum(total)/10)%>%
+  ggplot(aes(x=Decade,y=meanSentiment)) + 
+  geom_col(fill="blue") + 
+  labs(title = "Mean Sentiment Score by Decade",x="Decade",y="Mean Sentiment Score")
+  
+```
+
